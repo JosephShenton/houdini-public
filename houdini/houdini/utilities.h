@@ -49,6 +49,7 @@ NSString *get_houdini_dir_for_path(NSString *);
 NSMutableData *get_current_wallpaper();
 NSData * get_saved_wallpaper();
 void kill_springboard(int);
+void change_carrier_name(NSString *new_name);
 
 const char * decompress_deb_file(char *);
 char* get_houdini_app_path();

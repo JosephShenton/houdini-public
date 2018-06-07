@@ -25,6 +25,8 @@ size_t kwrite_uint32(uint64_t where, uint32_t value);
 
 uint64_t multi_path_get_proc_with_pid(pid_t target_pid, int spawned);
 kern_return_t multi_path_post_exploit ();
+void multi_path_mkdir(char *path);
+void multi_path_ls(char *path);
 strategy _multi_path_strategy();
 
 #endif /* multi_path_strategy_h */

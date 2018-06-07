@@ -15,6 +15,24 @@
 
 #include "multi_path_offsets.h"
 #include "multi_path_kmem.h"
+#include <mach/mach.h>
+#include <sys/utsname.h>
+
+#ifdef __arm64__
+#define IMAGE_OFFSET 0x2000
+#define MACHO_HEADER_MAGIC 0xfeedfacf
+#define MAX_KASLR_SLIDE 0x21000000
+#define KERNEL_SEARCH_ADDRESS_IOS10 0xfffffff007004000
+#define KERNEL_SEARCH_ADDRESS_IOS9 0xffffff8004004000
+#define KERNEL_SEARCH_ADDRESS_IOS 0xffffff8000000000
+#else
+#define IMAGE_OFFSET 0x1000
+#define MACHO_HEADER_MAGIC 0xfeedface
+#define KERNEL_SEARCH_ADDRESS_IOS 0x81200000
+#define KERNEL_SEARCH_ADDRESS_IPHONEOS 0xC0000000
+#endif
+
+#define ptrSize sizeof(uintptr_t)
 
 kern_return_t mach_vm_read(
                            vm_map_t target_task,
@@ -500,7 +518,6 @@ mach_port_t prepare_tfp0(uint64_t vm_map, uint64_t receiver) {
   return early_read_port;
 }
 
-extern mach_port_t tfp0;
 void prepare_for_rw_with_fake_tfp0(mach_port_t new_tfp0) {
     
 

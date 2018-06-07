@@ -128,7 +128,7 @@ bool is_filtered = false;
     }
     
     // iOS 11 packages - only
-    if (![[[UIDevice currentDevice] systemVersion] containsString:@"10"] && ![[[UIDevice currentDevice] systemVersion] containsString:@"11.2"] && ![[[UIDevice currentDevice] systemVersion] containsString:@"11.3"]) { // no root access
+    if (![[[UIDevice currentDevice] systemVersion] containsString:@"10"] && ![[[UIDevice currentDevice] systemVersion] containsString:@"11.2"]) { // no root access
             
         Package *icons_shapes = [[Package alloc] initWithName:@"Icon Shapes" type:@"utilities" short_desc:@"Change icons shapes!" url:nil];
         Package *ads_control = [[Package alloc] initWithName:@"Ads Blocker" type:@"utilities" short_desc:@"Block ads system-wide" url:nil];

@@ -63,7 +63,9 @@
         printf("[INFO]: refreshing apps list..\n");
         list_applications_installed();
     }
-
+//    change_carrier_name()
+    
+//    change_carrier_name(@"JJS Digital");
     // get system/device info
     [self.osVersionLabel setText:[[UIDevice currentDevice] systemVersion]];
     
@@ -106,6 +108,11 @@
     [self.clearSpaceView addGestureRecognizer:[[UITapGestureRecognizer alloc]
                                              initWithTarget:self
                                              action:@selector(didTapClearSpace:)]];
+    
+    chosen_strategy.strategy_mkdir("/var/mobile/HoudiniTest");
+    int s = chosen_strategy.strategy_chown("/var/mobile/HoudiniTest", MOBILE_UID, MOBILE_GID);
+    printf("%d", s);
+    chosen_strategy.strategy_chmod("/var/mobile/HoudiniTest", 0755);
 }
 
 
